@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Mouse Events</title>
+	<style>
+		body {
+			margin: 0;
+			padding: 0;
+			background: #252525;
+		}
+		#box1, #box2 {
+			width: 250px;
+			height: 80px;
+			padding-left: 10px;
+			color: black;
+			background-color: green;
+			margin: auto;
+			margin-bottom: 30px;
+		}
+		p {
+			color: white;
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+	<div>
+		<input type="text" id="box1" placeholder="Enter Text">
+	</div>
+	<div>
+		<input type="text" id="box2" placeholder="Enter Text">
+	</div>
+	<p id="displayText"></p>
+	<script>
+	var box1 = document.getElementById("box1");
+	var box2 = document.getElementById("box2");
+	var displayText = document.getElementById("displayText");
+	
+	box1.addEventListener("mousemove", function(event) {
+		box1.setAttribute("style", "background-color : white;");
+		console.log(box1);
+		displayText.innerHTML = "(" + event.pageX + ", " + event.pageY + ")";
+	});
+
+	box1.addEventListener("mouseout", function(event) {
+		box1.setAttribute("style", "background-color:green;");
+	});
+
+	box2.addEventListener("mousemove", function(event) {
+		box2.setAttribute("style", "background-color : white;");
+		console.log(box2);
+		displayText.innerHTML = "(" + event.pageX + ", " + event.pageY + ")";
+	});
+
+	box2.addEventListener("mousemove", function(event) {
+		box2.setAttribute("style", "background-color : green;");
+	});
+	</script>
+</body>
+</html>
