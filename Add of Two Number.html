@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Add of Two Number</title>
+</head>
+<body>
+	<input type="text" name="Enter 1st no" id="input1" value=""><br>
+	<input type="text" name="Enter 2st no" id="input2" value=""><br>
+	<button  id="add">Add</button>
+	<h4 id="result">Result :</h4>
+	<script type="text/javascript">
+			var add=document.getElementById("add");
+			var btn1=document.getElementById("input1");
+			var btn2=document.getElementById("input2");
+			add.onclick=function ()
+				{
+				if(btn1.value!="")
+				if(btn2.value!="")
+				{
+					var add_elements=parseInt(btn1.value)+parseInt(btn2.value);
+					console.log(add_elements);
+					var final=add_elements.toString();
+					var result_final=document.getElementById("result");
+					result_final.innerHTML="Result : "+ final;
+				}
+				else
+					alert("Enter value of 2nd input");
+				else
+					alert("Enter value of 1st input");
+		}
+	</script>
+</body>
+</html>
