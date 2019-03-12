@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<script>
+	var str="hello rishabh Anand",str1="";
+	var i=0,flag=false,c;
+	while(i<str.length)
+	{
+		if(str[i]==' ')
+		{
+			str1=str1+str[i]
+;				flag=false;
+		}
+		else
+		{
+			if(flag==false)
+			{
+				if(str[i]>='a' && str[i]<='z')
+					str1=str1+str.charAt(i).toUpperCase();
+				else
+					str1=str1+str[i];
+			}
+			else
+				str1=str1+str[i];
+			flag=true;
+		}
+		i++;
+	}
+	console.log(str1);
+</script>
+</html>
