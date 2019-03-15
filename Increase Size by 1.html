@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Increase Size by 1</title>
+</head>
+<body>
+	<div id="text1" style="background: red;width:100px;">Rishabh Anand</div>
+	<script type="text/javascript">
+		var ip=document.getElementById("text1");
+		var interval=setInterval(change_width,1000);
+		function change_width()
+		{
+			var width=parseInt(ip.style.width)+1;
+			if((width)==500)
+			{
+				clearInterval(interval);
+			}
+			width=width+'px';
+			ip.setAttribute("style",`width:${width};background:red`);
+			console.log(ip);
+		}
+	</script>
+</body>
+</html>
