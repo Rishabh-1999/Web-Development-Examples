@@ -1,10 +1,23 @@
 var products = [];
 var productId = 1;
+function retrieve()
+{
+	var text = localStorage.getItem("Products");
+	if(text!=null)
+	{
+	products = JSON.parse(text);
+	for(var i=0;i<products.length;i++)
+	{
+		addProducttoDOM(products[i]);
+	}
+	productId=products.length;
+}
+}
 var divAddProduct = document.getElementById("divAddProduct");
 var divListProducts = document.getElementById("divListProducts");
 var aAddProduct = document.getElementById("aAddProduct");
 
-
+var myObj, myJSON;
 aAddProduct.addEventListener("click", function(event) {  
     createNewProductPanel(); 
 	}
@@ -30,6 +43,8 @@ function addProducttoArray() {
 	addProducttoDOM(objProduct);
     deleteNewProductPanel();
 	productId++;
+	myJSON = JSON.stringify(products);
+	localStorage.setItem("Products", myJSON);
 }
 
 function addProducttoDOM(objProduct) {  	
@@ -83,6 +98,7 @@ function addProducttoDOM(objProduct) {
 	aEdit.addEventListener("click",function(event) {
 		var targetParent = event.target.parentNode;
 		var selectedProductIndex = getProductIndex(parseInt(targetParent.id));
+		console.log(selectedProductIndex);
 		updateProductPanel(selectedProductIndex);
 	});
 							
@@ -142,9 +158,10 @@ function insertBlankLine(targetElement) {
 
 function editProducttoDOM(objProduct) {
 	var divProduct = document.getElementById(objProduct.Id);
-	var childNodes = divProduct.childNodes;
-	childNodes[0].innerHTML = objProduct.Name;
-	childNodes[2].innerHTML = objProduct.Desc;
+	var childNodes1 = divProduct.childNodes;
+	console.log(childNodes1);
+	childNodes1[0].innerHTML = objProduct.Name;
+	childNodes1[2].innerHTML = objProduct.Desc;
 	unHideAddNewProductLink();
 }
 
@@ -158,6 +175,11 @@ function editProductArray(selectedProductIndex) {
 	products[selectedProductIndex] = objProduct;
 	editProducttoDOM(objProduct);
     deleteNewProductPanel();
+    //add storage
+    myJSON = JSON.stringify(products);
+	localStorage.setItem("Products", myJSON);
+	console.log(myJSON);
+
 }
 
 function updateProductPanel(selectedProductIndex) {
