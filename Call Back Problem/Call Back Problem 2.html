@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Call Back Problem 2</title>
+</head>
+<body>
+	<script type="text/javascript">
+		/*Method  1 : In this first for loop is completed then remaining items are performed,
+		so in this case output would be 10 times 10, in this case for is completed of i is 10
+		then value of i is printed which is 10 at that time*/
+		/*
+		for(var i=0;i<10;i++)
+		{
+			setTimeout(function()
+				{
+					console.log(i);
+				},1000);
+		}
+		*/
+		/*Method 2 : In this method first for loop is completed then remaining items are performed,
+		so in this case output would be 0 to 9, in this case evertime loop is executing, a function
+		with arguments is added in queue to execute afterwards this causes to print from 0 to 9*/
+		/*
+		function fun(i)
+		{
+			setTimeout(function()
+				{
+				console.log(i);
+				},1000);
+		}
+		for(var i=0;i<10;i++)
+		{
+			fun(i);
+		}
+		*/
+	</script>
+</body>
+</html>

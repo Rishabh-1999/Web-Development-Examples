@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Call Back Problem 1</title>
+</head>
+<body>
+	<button id="btn">Click</button>
+	<script type="text/javascript">
+		// First for loop is completed then button or btn click is performed
+		var btn=document.getElementById('btn');
+		btn.onclick=function()
+		{
+			alert("welcome");
+		}
+		for(var i=0;i<100000;i++)
+		{
+			var e=document.createElement('li');
+			e.innerHTML=i;
+			document.body.appendChild(e);
+		}
+		var a=5;
+		var b=7;
+		var c=2;
+		var d=9;
+	</script>
+</body>
+</html>
