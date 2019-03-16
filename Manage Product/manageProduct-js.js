@@ -1,9 +1,22 @@
 var products = [];
 var productId = 1;
+function load()	{				// Onload Function
+	var tempArray = localStorage.getItem("Products");
+	if(tempArray!=null)
+	{
+		products = JSON.parse(tempArray);
+		for(var i=0;i<products.length;i++)
+		{
+			addProducttoDOM(products[i]);
+		}
+		productId=products.length+1;
+	}
+}
 var divAddProduct = document.getElementById("divAddProduct");
 var divListProducts = document.getElementById("divListProducts");
 var aAddProduct = document.getElementById("aAddProduct");
 
+var myJSON;
 
 aAddProduct.addEventListener("click", function(event) {  
     createNewProductPanel(); 
@@ -12,7 +25,6 @@ aAddProduct.addEventListener("click", function(event) {
 	
 function addProducttoArray() {
 	var objProduct = new Object();
-	
 	objProduct.Id = productId;
  	objProduct.Name = document.getElementById("txtProductName").value;
     objProduct.Desc = document.getElementById("txtProductDesc").value;
@@ -30,6 +42,9 @@ function addProducttoArray() {
 	addProducttoDOM(objProduct);
     deleteNewProductPanel();
 	productId++;
+
+	myJSON = JSON.stringify(products);
+	localStorage.setItem("Products", myJSON);
 }
 
 function addProducttoDOM(objProduct) {  	
@@ -83,6 +98,7 @@ function addProducttoDOM(objProduct) {
 	aEdit.addEventListener("click",function(event) {
 		var targetParent = event.target.parentNode;
 		var selectedProductIndex = getProductIndex(parseInt(targetParent.id));
+		console.log(selectedProductIndex);
 		updateProductPanel(selectedProductIndex);
 	});
 							
@@ -118,6 +134,9 @@ function getProductDetails(selectedProductIndex) {
 function removeFromProductsArray(selectedProductIndex) {
 	products.splice(selectedProductIndex,1);
 	console.log(products);
+
+	myJSON = JSON.stringify(products);
+	localStorage.setItem("Products", myJSON);
 }
 
 function deleteNewProductPanel() {
@@ -142,9 +161,10 @@ function insertBlankLine(targetElement) {
 
 function editProducttoDOM(objProduct) {
 	var divProduct = document.getElementById(objProduct.Id);
-	var childNodes = divProduct.childNodes;
-	childNodes[0].innerHTML = objProduct.Name;
-	childNodes[2].innerHTML = objProduct.Desc;
+	var childNodes1 = divProduct.childNodes;
+	console.log(childNodes1);
+	childNodes1[0].innerHTML = objProduct.Name;
+	childNodes1[2].innerHTML = objProduct.Desc;
 	unHideAddNewProductLink();
 }
 
@@ -158,6 +178,9 @@ function editProductArray(selectedProductIndex) {
 	products[selectedProductIndex] = objProduct;
 	editProducttoDOM(objProduct);
     deleteNewProductPanel();
+
+    myJSON = JSON.stringify(products);
+	localStorage.setItem("Products", myJSON);
 }
 
 function updateProductPanel(selectedProductIndex) {
