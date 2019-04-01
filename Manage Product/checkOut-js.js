@@ -1,8 +1,16 @@
 var cart=[];
 var cartID=1;
+var loginName;
 function load()
 {
-	var text = localStorage.getItem("Carts");
+	loginName=sessionStorage.getItem("currentAccount_name");
+	if(loginName==null)
+	{
+		window.open ('login.html','_self',false)
+	}
+	else
+		console.log("login success");
+	var text = localStorage.getItem(loginName+"Carts");
 	if(text!=null)
 	{
 		cart = JSON.parse(text);
@@ -39,6 +47,40 @@ function addtoListDOM(objProduct)
 	td4.innerHTML=objProduct.Quantity;
 	td4.setAttribute("id","productQuantity"+cartID);
 	tr1.appendChild(td4);
+
+	var td5=document.createElement('td');
+	var deletebtn=document.createElement('button');
+	deletebtn.innerHTML="Delete";
+	td5.setAttribute("id","deletebtn"+cartID);
+	td5.appendChild(deletebtn);
+	tr1.appendChild(td5);
+
+	deletebtn.addEventListener("click",function(event) {
+		console.log(td1.innerHTML);
+		 deleteProduct(getProductIndex(td2.innerHTML,td4.innerHTML));
+	  }
+	);
+
 	divTableProducts.appendChild(tr1);
 	cartID++;
+}
+
+function getProductIndex(id,q) {
+    for (var i = 0; i < cart.length; i++) {
+        if (id.localeCompare(cart[i].Name)==true && q.localeCompare(cart[i].Quantity)==true) 
+			return i;
+    }
+} 
+
+function deleteProduct(selectedProductIndex)
+{
+	cart.splice(selectedProductIndex-2,1);
+	console.log(cart);
+
+	var myJSON = JSON.stringify(cart);
+	localStorage.setItem(loginName+"Carts", myJSON);
+	/*
+	var childNodes = divTableProducts.childNodes;
+	 divTableProducts.removeChild(childNodes[selectedProductIndex+2]);*/
+	 document.location.reload(true)
 }

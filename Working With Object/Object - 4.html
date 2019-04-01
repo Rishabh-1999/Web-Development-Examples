@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Object - 4</title>
+</head>
+<body>
+	<!-- script for copying an object refrence in a global variable -->
+
+	<script type="text/javascript">
+		// Create Object
+		var person = {
+			name : "Rishabh",
+		}
+		// Putting person object to tempObject
+		var tempObject = person;
+		// Changing value of name
+		tempObject.name = 'Hero';
+		console.log(person.name);
+		console.log(tempObject.name);
+	</script>
+</body>
+</html>

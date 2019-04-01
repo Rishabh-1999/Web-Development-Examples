@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Object - 3</title>
+</head>
+<body>
+	<!-- script for this keyword and changing the names through functions -->
+
+	<script type="text/javascript">
+		// Create Object
+		var details = new Object();  
+		details.first_Name = "Rishabh";
+		details.last_Name = "Anand";
+		// Create getFullName Function
+		details.getFullName = function() {
+			return this.first_Name +" " + this.last_Name;
+		}
+		// Calling getFullName function
+		console.log(details.getFullName());
+		// Create change_Name Function
+		details.change_Name = function (first,last) {
+			this.first_Name = first;
+			this.last_Name = last;
+		}
+		// Calling change_Name Function
+		details.change_Name("Rishabh","Hero");
+		// Calling getFullName function
+		console.log(details.getFullName());
+	</script>
+
+</body>
+</html>

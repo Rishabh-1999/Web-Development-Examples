@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Object - 2</title>
+</head>
+<body>
+	<script type="text/javascript">
+		// Creating Object
+		var person = {
+			name : "Rishabh",
+			getName : function () {
+				return this.name;
+			}
+		}
+		//Putting function in one variable
+		var fun = person.getName;
+		// Calling fun function
+		console.log(fun());			// It will not work as fun function seac for global variable but it could not find it
+		// Calling getName function in person object
+		console.log(person.getName());
+	</script>
+
+</body>
+</html>

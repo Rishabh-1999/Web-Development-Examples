@@ -2,9 +2,18 @@ var cart=[];
 var cartID=1;
 var products=[];
 var productId=1;
+var loginName;
 function load() {		//onload function
 	var tempArrayProducts = localStorage.getItem("Products");
-	var tempArrayCart = localStorage.getItem("Carts");
+	loginName=sessionStorage.getItem("currentAccount_name");
+	if(loginName==null)
+	{
+		window.open ('login.html','_self',false)
+	}
+	else
+		console.log("login success");
+	var tempArrayCart = localStorage.getItem(loginName+"Carts");
+	document.getElementById('login_h1').innerHTML="Hi, "+loginName;
 	if(tempArrayProducts!=null)
 	{
 		products = JSON.parse(tempArrayProducts);
@@ -22,8 +31,8 @@ function load() {		//onload function
 	console.log(products);
 }
 
+// Function to display show product
 var divTableProducts = document.getElementById("tableShowProduct");
-
 function addtoListDOM(objProduct) {
 	var tr1=document.createElement('tr');
 
@@ -71,17 +80,15 @@ function addToCartArray(selectedProductIndex) {
 	var objProduct = new Object();
 	objProduct.Id = cartID;
 	var id=document.getElementById("productId"+selectedProductIndex).innerHTML;
- 	objProduct.Name = id;
+ 	objProduct.Name = document.getElementById("productName"+selectedProductIndex).innerHTML;
 	objProduct.Price = document.getElementById("productPrice"+selectedProductIndex).innerHTML;
 	var quantity=document.getElementById("input"+selectedProductIndex);
 	objProduct.Quantity = document.getElementById("input"+selectedProductIndex).value;
 	quantity.value="";
 	cart.push(objProduct);
-
 	var temp = JSON.stringify(cart);
-	localStorage.setItem("Carts", temp);	
+	localStorage.setItem(loginName+"Carts", temp);	
 	cartID++;
-
 	update(id,quantity);
 }
 function update(id,q)
