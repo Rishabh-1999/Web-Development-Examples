@@ -75,12 +75,8 @@ function addtoListDOM(objProduct)
 
 function getProductIndex(id,q) {
     for (var i = 0; i < cart.length; i++) {
-    	console.log("in"+cart[i].Name+' '+cart[i].Quantity);
         if (id.localeCompare(cart[i].Name)==0 && q.localeCompare(cart[i].Quantity)==0) 
-        {
-			console.log("out"+cart[i].Name+' '+cart[i].Quantity);
 			return i;
-		}
     }
 } 
 
@@ -93,7 +89,5 @@ function deleteProduct(selectedProductIndex)
 	localStorage.setItem(loginName+"Carts", myJSON);
 	console.log(selectedProductIndex+"this");
 	
-	var childNodes = divTableProducts.childNodes;
-	 divTableProducts.removeChild(childNodes[selectedProductIndex]);
-	//document.location.reload(true)
+	document.location.reload(true)
 }
