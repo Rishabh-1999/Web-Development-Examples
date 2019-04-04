@@ -31,6 +31,14 @@ function load() {		//onload function
 	console.log(products);
 }
 
+var logout=document.getElementById('logout');
+logout.addEventListener("click",function()
+{
+	sessionStorage.setItem("currentAccount_name",null);
+	sessionStorage.setItem("currentAccount_emailid",null);
+	window.open ('login.html','_self',false);
+});
+
 // Function to display show product
 var divTableProducts = document.getElementById("tableShowProduct");
 function addtoListDOM(objProduct) {

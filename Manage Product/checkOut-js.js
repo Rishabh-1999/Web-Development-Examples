@@ -22,6 +22,14 @@ function load()
 	console.log(cart);
 }
 
+var logout=document.getElementById('logout');
+logout.addEventListener("click",function()
+{
+	sessionStorage.setItem("currentAccount_name",null);
+	sessionStorage.setItem("currentAccount_emailid",null);
+	window.open ('login.html','_self',false);
+});
+
 var divTableProducts = document.getElementById("tableShowProduct");
 
 function addtoListDOM(objProduct)
@@ -67,20 +75,25 @@ function addtoListDOM(objProduct)
 
 function getProductIndex(id,q) {
     for (var i = 0; i < cart.length; i++) {
-        if (id.localeCompare(cart[i].Name)==true && q.localeCompare(cart[i].Quantity)==true) 
+    	console.log("in"+cart[i].Name+' '+cart[i].Quantity);
+        if (id.localeCompare(cart[i].Name)==0 && q.localeCompare(cart[i].Quantity)==0) 
+        {
+			console.log("out"+cart[i].Name+' '+cart[i].Quantity);
 			return i;
+		}
     }
 } 
 
 function deleteProduct(selectedProductIndex)
 {
-	cart.splice(selectedProductIndex-2,1);
+	cart.splice(selectedProductIndex,1);
 	console.log(cart);
 
 	var myJSON = JSON.stringify(cart);
 	localStorage.setItem(loginName+"Carts", myJSON);
-	/*
+	console.log(selectedProductIndex+"this");
+	
 	var childNodes = divTableProducts.childNodes;
-	 divTableProducts.removeChild(childNodes[selectedProductIndex+2]);*/
-	 document.location.reload(true)
+	 divTableProducts.removeChild(childNodes[selectedProductIndex]);
+	//document.location.reload(true)
 }
