@@ -1,0 +1,30 @@
+html{
+	height:100%;
+	width:100%;
+}
+body {
+	background: red;
+	background-image: linear-gradient(purple, lightblue, white);
+}
+	
+#main {
+	width:200px;
+	border:1px solid black;
+	height:120px;
+	position:absolute;
+	text-align: center;
+	top:40%;
+	padding:10px;
+	left:40%;
+}
+
+#main input {
+	font-size:30px;
+}
+
+#btn_play {
+	float:left;
+}
+#btn_pause {
+	float:right;
+}
