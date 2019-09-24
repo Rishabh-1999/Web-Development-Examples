@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Simple BMI Calculator</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+	<div class="container center">
+		<div class="card">
+			<div class="card-header text-center">Simple BMI Calculator</div>
+			<div class="card-body">
+				<form class="w-50 m-auto" onsubmit="return false">
+					<div class="form-group">
+						<label>Weight :</label>
+						<input type="number" name="" placeholder="Weight in Kg" id="weight" class="form-control" required>
+					</div>
+					<div class="form-group">
+						<label>Height :</label>
+						<input type="text" name="" placeholder="Height in cm" id="height" class="form-control" required>
+					</div>
+					<div class="form-group">
+						<label>Excepted BMI Value :</label>
+						<input type="number" name="" id="finalvalue" class="form-control">
+					</div>
+					<h4 id="type" class=""></h4>
+					<div>
+						<button type="submit" class="btn btn-success" onclick="calculatebmi()">Calculate BMI</button>
+					</div>
+				</form>			
+			</div>
+		</div>	
+	</div>
+<script>
+	function calculatebmi() {
+	var weight = document.getElementById('weight').value;
+	var height = document.getElementById('height').value;
+	var type = document.getElementById('type');
+	var data=document.getElementById('finalvalue');
+	height=height/100;
+	
+        var value=Math.round(weight * 10 / height / height) / 10;
+		console.log(value);
+
+        if(value<=12) {
+            type.innerHTML="Value Not Possible";
+        }
+        else if(value>12 && 18.5>value) {
+            data.value=value;
+            type.innerHTML="UnderWeight";
+        }
+        else if(value>=18.5 && 25>value) {
+            data.value=value;
+            type.innerHTML="Normal";
+        }
+        else if(value>=25 && 30>value) {
+            data.value=value;
+            type.innerHTML="Over Weight";
+        }
+        else if(value>=30 && 35>value) {
+            data.value=value;
+            type.innerHTML="Obese Class I";
+        }
+        else if(value>=35 && 40>value) {
+            data.value=value;
+            type.innerHTML="Obese Class II";
+        }
+        else if(value>=40) {
+            document.getElementById('finalvalue').value=value;
+            type.innerHTML="Obese Class III";
+        }
+}
+</script>
+</body>
+</html>
